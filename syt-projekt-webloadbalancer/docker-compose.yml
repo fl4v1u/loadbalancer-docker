@@ -1,0 +1,13 @@
+services:
+
+  web1:
+    image: webserver1
+    container_name: web1
+    ports:
+      - "8081:80"
+
+  web2:
+    image: webserver2
+    container_name: web2
+    ports:
+      - "8082:80"
