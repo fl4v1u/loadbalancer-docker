@@ -3,11 +3,22 @@ services:
   web1:
     image: webserver1
     container_name: web1
-    ports:
-      - "8081:80"
+    volumes:
+      - ./logs/web1:/logs
+      - ./html:/usr/share/nginx/html
 
   web2:
     image: webserver2
     container_name: web2
+    volumes:
+      - ./logs/web2:/logs
+      - ./html:/usr/share/nginx/html
+
+  loadbalancer:
+    image: loadbalancer
+    container_name: loadbalancer
     ports:
-      - "8082:80"
+      - "8080:80"
+    depends_on:
+      - web1
+      - web2
